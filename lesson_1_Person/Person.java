@@ -1,3 +1,4 @@
+
 public class Person {
     int yearOfBirth;
     String name;
@@ -6,9 +7,16 @@ public class Person {
 
     Person(String name, int yearOfBirth, String town, String jobTitle) {
         this.name = name;
-        this.yearOfBirth = yearOfBirth;
         this.town = town;
         this.jobTitle = jobTitle;
+        if (yearOfBirth > 0 || yearOfBirth != 0) {
+            this.yearOfBirth = yearOfBirth;
+        } else {
+            System.out.println("Ошибка в дате рождения у " + this.name);
+        }
+        if (name == null || town == null || jobTitle == null) {
+            System.out.println("Информация не указана");
+        }
     }
 
     @Override
