@@ -7,12 +7,12 @@ import java.util.regex.Pattern;
 public class Automobile extends Transport {
 
     public Automobile(String brand, String model, int year, String country, String color, double speed,
-                      String registrationNumber, String tire, String transmission, double engineVolume) {
-        super(brand, model, year, country, color, speed);
+                      String registrationNumber, String tire, String transmission, double engineVolume, Double fuelPercentage) {
+        super(brand, model, year, country, color, speed, fuelPercentage);
         this.engineVolume = validateEngineVolume(engineVolume);
         this.transmission = validateTransmission(transmission);
         this.registrationNumber = validateRegistrNumver(registrationNumber);
-        this.tire=validateTire(tire);
+        this.tire = validateTire(tire);
     }
 
     public class Key {
@@ -101,8 +101,12 @@ public class Automobile extends Transport {
     private Key key;
     private Insurance insurance;
 
+    public void refill() {
+        System.out.println("Можно заправлять бензином, дизелем на заправке или заряжать на специальных электропарковках, " +
+                "если это электрокар транспортное средство заправлено на " + fuelPercentage + "%");
+    }
 
-// region validation
+    // region validation
 
     public static double validateEngineVolume(double value) {
         return value <= 0 ? 1.5 : value;
@@ -133,19 +137,15 @@ public class Automobile extends Transport {
         return correctRegistrNumber;
     }
 
-    public static String validateTire(String tire){
-        if(LocalDate.now().getMonthValue() >=10&&tire =="летняя")
-        {
+    public static String validateTire(String tire) {
+        if (LocalDate.now().getMonthValue() >= 10 && tire == "летняя") {
             tire = "Для безопасной поездки смените шины на зимнюю резину";
-        } else if(LocalDate.now().
-                getMonthValue() <=3 && tire =="летняя")
-        {
+        } else if (LocalDate.now().
+                getMonthValue() <= 3 && tire == "летняя") {
             tire = "Для безопасной поездки смените шины на зимнюю резину";
-        } else if(LocalDate.now().getMonthValue() >=4&&LocalDate.now().getMonthValue() <=9&&tire =="зимняя")
-        {
+        } else if (LocalDate.now().getMonthValue() >= 4 && LocalDate.now().getMonthValue() <= 9 && tire == "зимняя") {
             tire = "Для безопасной поездки смените шины на летнюю резину";
-        } else
-        {
+        } else {
             tire = tire;
         }
         return tire;
@@ -153,8 +153,7 @@ public class Automobile extends Transport {
     //endregion
 
 
-
-       public double getEngineVolume() {
+    public double getEngineVolume() {
         return engineVolume;
     }
 
@@ -185,8 +184,8 @@ public class Automobile extends Transport {
     }
 
     public void setTire() {
-       this.tire = validateTire(tire);
-        }
+        this.tire = validateTire(tire);
+    }
 
 
     public void changeTire() {

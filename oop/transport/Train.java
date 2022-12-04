@@ -9,13 +9,17 @@ public class Train extends Transport{
     private int wagonsAmount;
 
     public Train(String brand, String model, int year, String country, String color, double speed,
-                 double priceTicket, int timeTravel, String stationDeparture, String stationArrival, int wagonsAmount) {
-        super(brand, model, year, country, color, speed);
+                 double priceTicket, int timeTravel, String stationDeparture, String stationArrival, int wagonsAmount, Double fuelPercentage) {
+        super(brand, model, year, country, color, speed, fuelPercentage);
         this.priceTicket = validatePriceTicket(priceTicket);
         this.timeTravel = validateTimeTravel(timeTravel);
         this.stationDeparture = validateValue(stationDeparture);
         this.stationArrival = validateValue(stationArrival);
         this.wagonsAmount = validateWagonAmount(wagonsAmount);
+    }
+
+    public void refill(){
+        System.out.println("Можно заправлять дизелем транспортное средство заправлено на " + fuelPercentage + "%");
     }
 
     //region validation
@@ -31,6 +35,7 @@ public class Train extends Transport{
     public static int validateWagonAmount(int wagonsAmount){
         return wagonsAmount <= 0 ? 5 : wagonsAmount;
     }
+    //endregion
 
     public double getPriceTicket() {
         return priceTicket;

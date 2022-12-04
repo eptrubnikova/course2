@@ -1,6 +1,6 @@
 package transport;
 
-public class Transport {
+public abstract class Transport {
 
     private final String brand;
     private final String model;
@@ -8,15 +8,19 @@ public class Transport {
     private final String country;
     private String color;
     private double speed;
+    protected Double fuelPercentage;
 
-    public Transport(String brand, String model, int year, String country, String color, double speed) {
+    public Transport(String brand, String model, int year, String country, String color, double speed, Double fuelPercentage) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.country = country;
         this.color = validateColor(color);
         this.speed = validateSpeed(speed);
+        this.fuelPercentage = validateDouble(fuelPercentage);
     }
+
+    public abstract void refill();
 
     public String getBrand() {
         return brand;
@@ -50,6 +54,14 @@ public class Transport {
         this.speed = validateSpeed(speed);
     }
 
+    public Double getFuelPercentage() {
+        return fuelPercentage;
+    }
+
+    public void setFuelPercentage(Double fuelPercentage) {
+        this.fuelPercentage = validateDouble(fuelPercentage);
+    }
+
     //region validation
     public static String validateColor(String value) {
         return value == null || value.isEmpty() || value.isBlank() ? "белый" : value;
@@ -61,6 +73,10 @@ public class Transport {
 
     public static String validateValue(String value) {
         return value == null || value.isEmpty() || value.isBlank() ? "информация не указана" : value;
+    }
+
+    public static Double validateDouble(Double value) {
+        return value == null || value.isNaN() ? 50.00 : value;
     }
     //endregion
 
