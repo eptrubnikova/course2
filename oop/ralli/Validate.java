@@ -10,6 +10,10 @@ public class Validate {
         return value <= 0 ? 60 : value;
     }
 
+    public static int validateValue(int value) {
+        return value <= 0 ? 0 : value;
+    }
+
     public static String validateValue(String value) {
         return value == null || value.isEmpty() || value.isBlank() ? "некорректные данные" : value;
     }

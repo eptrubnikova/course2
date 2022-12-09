@@ -45,6 +45,16 @@ public class TestRalli {
         truck2.getMaxSpeed();
         truck2.setBesTime(3.2);
         truck2.getBestLapTime();
+
+        B_Driver<Car> nik = new B_Driver<>("Nik");
+        nik.toString(car3);
+        nik.start();
+
+        C_Driver<Truck> max = new C_Driver<>("Max");
+        max.toString(truck1);
+
+        D_Driver<BusRalli> tom = new D_Driver<>("Tom");
+        tom.toString(bus4);
     }
 
 
