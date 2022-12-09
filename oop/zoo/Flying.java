@@ -1,5 +1,7 @@
 package zoo;
 
+import static zoo.Validation.validateValue;
+
 public class Flying extends Bird {
 
     private final String typeMovement;

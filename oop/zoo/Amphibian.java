@@ -2,6 +2,8 @@ package zoo;
 
 import java.util.Objects;
 
+import static zoo.Validation.validateValue;
+
 public class Amphibian extends Animal {
 
     private String habitat;

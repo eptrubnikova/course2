@@ -2,6 +2,8 @@ package zoo;
 
 import java.util.Objects;
 
+import static zoo.Validation.validateValue;
+
 public abstract class Bird extends Animal {
 
     private String habitat;

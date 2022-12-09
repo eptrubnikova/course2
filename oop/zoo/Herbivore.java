@@ -2,6 +2,8 @@ package zoo;
 
 import java.util.Objects;
 
+import static zoo.Validation.validateValue;
+
 public class Herbivore extends Mammal{
 
     private String typeFood;
@@ -18,7 +20,7 @@ public class Herbivore extends Mammal{
 
     @Override
     public void go() {
-
+        System.out.println("гуляет");
     }
 
     public String graze() {

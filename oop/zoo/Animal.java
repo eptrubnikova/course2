@@ -2,6 +2,8 @@ package zoo;
 
 import java.util.Objects;
 
+import static zoo.Validation.validateValue;
+
 public abstract class Animal  {
 
     private String name;
@@ -15,14 +17,10 @@ public abstract class Animal  {
     public abstract void eat();
 
     public void sleep() {
-
+        System.out.println("Животное спит");
     }
 
-    public static String validateValue(String value) {
-        return value == null || value.isEmpty() || value.isBlank() ? "некорректные данные" : value;
-    }
-
-    public static int validateInt(int value) {
+        public static int validateInt(int value) {
         return value == 0 ? 1 : value;
     }
 
