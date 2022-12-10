@@ -18,19 +18,19 @@ public class C_Driver <B extends Truck> extends Driver implements Participating 
 
     @Override
     public void start() {
-        System.out.println("Начинаю гонку");
+        System.out.printf("%s начинает гонку", getName());
 
     }
 
     @Override
     public void stop() {
-        System.out.println("Завершаю гонку");
+        System.out.printf("%s завершает гонку", getName());
 
     }
 
     @Override
     public void refuel() {
-        System.out.println("Заправляю авто");
+        System.out.printf("%s заправляет авто", getName());
 
     }
 

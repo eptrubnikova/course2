@@ -55,6 +55,7 @@ public class TestRalli {
 
         D_Driver<BusRalli> tom = new D_Driver<>("Tom");
         tom.toString(bus4);
+tom.start();
     }
 
 
