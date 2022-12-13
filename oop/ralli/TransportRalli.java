@@ -53,5 +53,7 @@ public abstract class TransportRalli {
     public int hashCode() {
         return Objects.hash(brand, model, engineVolume);
     }
+
+    public abstract void printType();
 }
 

@@ -18,6 +18,14 @@ public class Validate {
         return value == null || value.isEmpty() || value.isBlank() ? "некорректные данные" : value;
     }
 
+    public static Float validateFloat(Float value) {
+        return value == null ? null : value;
+    }
+
+    public static Integer validateInteger(Integer value) {
+        return value == null ? null : value;
+    }
+
     public static double validateValue(double value) {
         return value == 0 ? 1 : value;
     }

@@ -55,7 +55,23 @@ public class TestRalli {
 
         D_Driver<BusRalli> tom = new D_Driver<>("Tom");
         tom.toString(bus4);
-tom.start();
+        tom.start();
+
+        System.out.println();
+
+        System.out.println(Car.BodyType.COUPE);
+        Truck.LoadCapacity loadCapacity = Truck.LoadCapacity.N1;
+        System.out.println(loadCapacity);
+
+        car1.setBodyType(Car.BodyType.PICKUP);
+        car1.printType();
+
+        truck2.setLoadCapacity(Truck.LoadCapacity.N1);
+        truck2.printType();
+
+        System.out.println(BusRalli.NumberSeats.BIG);
+        bus3.setNumberSeats(BusRalli.NumberSeats.AVERAGE);
+        bus3.printType();
     }
 
 

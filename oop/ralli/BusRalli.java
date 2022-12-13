@@ -1,6 +1,31 @@
 package ralli;
 
-public class BusRalli extends TransportRalli implements Competing{
+public class BusRalli extends TransportRalli implements Competing {
+
+    public enum NumberSeats {
+        VERY_SMALL(null, 10),
+        SMALL(null, 25),
+        AVERAGE(40, 50),
+        BIG(60, 80),
+        VERY_BIG(100, 120);
+
+        private Integer numberSeatsFrom;
+        private Integer numberSeatsBefore;
+
+        NumberSeats(Integer numberSeatsFrom, Integer numberSeatsBefore) {
+            this.numberSeatsFrom = Validate.validateInteger(numberSeatsFrom);
+            this.numberSeatsBefore = Validate.validateInteger(numberSeatsBefore);
+        }
+
+        @Override
+        public String toString() {
+            if (numberSeatsFrom == null) {
+                System.out.println("Вместимость автобуса до " + numberSeatsBefore + " мест");
+            } else System.out.println("Вместимость автобуса от " + numberSeatsFrom + " до " + numberSeatsBefore + " мест");
+
+            return name();
+        }
+    }
 
     public static final String REFUELING = "заправка топливом";
     public static final String TIRE_CHANGE = "смена шин";
@@ -9,6 +34,7 @@ public class BusRalli extends TransportRalli implements Competing{
     public static final String[] ALL_ACTION = {REFUELING, TIRE_CHANGE, DRIVER_CHANGE, QUICK_REPAIR};
     private int speed;
     private double besTime;
+    private NumberSeats numberSeats;
 
     public int getSpeed() {
         return speed;
@@ -26,6 +52,14 @@ public class BusRalli extends TransportRalli implements Competing{
         this.besTime = Validate.validateValue(besTime);
     }
 
+    public NumberSeats getNumberSeats() {
+        return numberSeats;
+    }
+
+    public void setNumberSeats(NumberSeats numberSeats) {
+        this.numberSeats = numberSeats;
+    }
+
     public BusRalli(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
@@ -38,6 +72,15 @@ public class BusRalli extends TransportRalli implements Competing{
     @Override
     public void finishMoving() {
         System.out.println("стоп");
+    }
+
+    @Override
+    public void printType() {
+        if (numberSeats == null) {
+            System.out.println("данные не указаны");
+        } else {
+            System.out.printf("У автобуса %s %s %s \n", getBrand(), getModel(), getNumberSeats());
+        }
     }
 
     @Override
@@ -67,11 +110,11 @@ public class BusRalli extends TransportRalli implements Competing{
 
     @Override
     public void getBestLapTime() {
-        System.out.println( "У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
+        System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
     }
 
     @Override
     public void getMaxSpeed() {
-        System.out.println( "У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
+        System.out.println("У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
     }
 }

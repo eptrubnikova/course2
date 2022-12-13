@@ -2,6 +2,33 @@ package ralli;
 
 public class Car extends TransportRalli implements Competing {
 
+    public enum BodyType {
+        SEDAN("Седан"),
+        HATCHBACK("Хетчбек"),
+        COUPE("Купе"),
+        WAGON("Универсал"),
+        SUV("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        VAN("Фургон"),
+        MINIVAN("Минивэн");
+
+        private String nameBodyCar;
+
+        BodyType(String nameBodyCar) {
+            this.nameBodyCar = nameBodyCar;
+        }
+
+        public String getNameBodyCar() {
+            return nameBodyCar;
+        }
+
+        @Override
+        public String toString() {
+            return "Тип кузова: " + nameBodyCar;
+        }
+    }
+
     public static final String REFUELING = "заправка топливом";
     public static final String TIRE_CHANGE = "смена шин";
     public static final String DRIVER_CHANGE = "смена водителя";
@@ -9,11 +36,11 @@ public class Car extends TransportRalli implements Competing {
     public static final String[] ALL_ACTION = {REFUELING, TIRE_CHANGE, DRIVER_CHANGE, QUICK_REPAIR};
     private int speed;
     private double besTime;
+    private BodyType bodyType;
 
     public Car(String brand, String model, double engineVolume) {
         super(brand, model, engineVolume);
     }
-
 
 
     public double getBesTime() {
@@ -32,6 +59,14 @@ public class Car extends TransportRalli implements Competing {
         this.speed = Validate.validateSpeed(speed);
     }
 
+    public BodyType getBodyType() {
+        return bodyType;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
+
     @Override
     public void startMoving() {
         System.out.println("старт");
@@ -40,6 +75,16 @@ public class Car extends TransportRalli implements Competing {
     @Override
     public void finishMoving() {
         System.out.println("финиш");
+    }
+
+
+    @Override
+    public void printType() {
+        if (bodyType == null) {
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.printf("У автомобиля %s %s %s \n", getBrand(), getModel(), getBodyType());
+        }
     }
 
 
@@ -70,13 +115,12 @@ public class Car extends TransportRalli implements Competing {
 
     @Override
     public void getBestLapTime() {
-        System.out.println( "У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
+        System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
     }
 
     @Override
-    public void  getMaxSpeed() {
-        System.out.println( "У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
+    public void getMaxSpeed() {
+        System.out.println("У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
     }
-
 
 }
