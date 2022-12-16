@@ -1,5 +1,7 @@
 package zoo;
 
+import static zoo.Validation.validateValue;
+
 public class Predator extends Mammal {
 
     private String typeFood;
@@ -17,7 +19,6 @@ public class Predator extends Mammal {
         this.typeFood = validateValue(typeFood);
     }
 
-
     @Override
     public void eat() {
         System.out.println("Животное ест " + typeFood + ", когда " + hunt());
@@ -25,7 +26,7 @@ public class Predator extends Mammal {
 
     @Override
     public void go() {
-
+        System.out.println("гуляет");
     }
 
     public String hunt() {
