@@ -89,16 +89,16 @@ public class TestRalli {
         }
     }
 
-    public static void checkCategoryLicence(Driver... drivers) throws LicenceException {
-        for (Driver driver : drivers) {
-            if (driver.getCategoryLicence() == null || driver.getCategoryLicence().isEmpty() || driver.getCategoryLicence().isBlank()) {
-                throw new LicenceException("Необходимо указать категорию прав!");
-            } else {
-                System.out.println("Категория прав указана");
+        public static void checkCategoryLicence (Driver...drivers) throws LicenceException {
+            for (Driver driver : drivers) {
+                if (driver.getCategoryLicence() == null || driver.getCategoryLicence().isEmpty() || driver.getCategoryLicence().isBlank()) {
+                    throw new LicenceException("Необходимо указать категорию прав!");
+                } else {
+                    System.out.println("Категория прав указана");
+                }
             }
         }
     }
-}
 
 
 

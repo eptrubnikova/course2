@@ -39,7 +39,8 @@ public abstract class TransportRalli {
 
     public abstract void printType();
 
-    public void getDiagnosed () throws DiagnosticsException {}
+    public void getDiagnosed () throws DiagnosticsException {
+    }
 
     @Override
     public String toString() {

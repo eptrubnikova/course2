@@ -130,8 +130,7 @@ public class Truck extends TransportRalli implements Competing {
     }
 
     public void getDiagnosed() {
-        System.out.printf("У грузового  автомобиля %s %s диагностика проведена \n", getBrand(), getModel());
-    }
+        System.out.printf("У автомобиля %s %s диагностика проведена \n", getBrand(), getModel());    }
 
     @Override
     public void getBestLapTime() {
