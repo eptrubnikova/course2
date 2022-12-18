@@ -37,6 +37,10 @@ public abstract class TransportRalli {
         this.engineVolume = validateEngineVolume(engineVolume);
     }
 
+    public abstract void printType();
+
+    public void getDiagnosed () throws DiagnosticsException {}
+
     @Override
     public String toString() {
         return "Транспортное средство " + brand + " " + model + ", с объемом двигателя " + engineVolume;
@@ -53,7 +57,6 @@ public abstract class TransportRalli {
     public int hashCode() {
         return Objects.hash(brand, model, engineVolume);
     }
-
-    public abstract void printType();
 }
+
 

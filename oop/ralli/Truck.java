@@ -39,6 +39,7 @@ public class Truck extends TransportRalli implements Competing {
             return name();
         }
 
+
         @Override
         public String toString() {
             return findLoadCapacity();
@@ -126,6 +127,10 @@ public class Truck extends TransportRalli implements Competing {
                 System.out.println("Машина продолжила движение");
         }
 
+    }
+
+    public void getDiagnosed() {
+        System.out.printf("У грузового  автомобиля %s %s диагностика проведена \n", getBrand(), getModel());
     }
 
     @Override

@@ -3,7 +3,7 @@ package ralli;
 public class TestRalli {
     public static Truck[] trucks = new Truck[0];
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LicenceException {
 
         BusRalli bus1 = new BusRalli("ПАЗ", "4234", 1.5);
         BusRalli bus2 = new BusRalli("ПАЗ", "6666", 1.7);
@@ -46,14 +46,14 @@ public class TestRalli {
         truck2.setBesTime(3.2);
         truck2.getBestLapTime();
 
-        B_Driver<Car> nik = new B_Driver<>("Nik");
-        nik.toString(car3);
+        B_Driver<Car> nik = new B_Driver<>("Nik", "B", car2);
+        nik.toString(car2);
         nik.start();
 
-        C_Driver<Truck> max = new C_Driver<>("Max");
+        C_Driver<Truck> max = new C_Driver<>("Max", "C", truck1);
         max.toString(truck1);
 
-        D_Driver<BusRalli> tom = new D_Driver<>("Tom");
+        D_Driver<BusRalli> tom = new D_Driver<>("Tom", null, bus4);
         tom.toString(bus4);
         tom.start();
 
@@ -72,7 +72,33 @@ public class TestRalli {
         System.out.println(BusRalli.NumberSeats.BIG);
         bus3.setNumberSeats(BusRalli.NumberSeats.AVERAGE);
         bus3.printType();
+
+        getDiagnosed(car1, car2, car3, car4, bus1, bus2, bus3, bus4, truck1, truck2, truck3, truck4);
+        checkCategoryLicence(nik, tom);
     }
 
 
+    public static void getDiagnosed(TransportRalli... transportRallis) {
+        for (TransportRalli transportRalli : transportRallis) {
+            try {
+                transportRalli.getDiagnosed();
+            } catch (DiagnosticsException e) {
+                System.out.println("Проверка не проведена");
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void checkCategoryLicence(Driver... drivers) throws LicenceException {
+        for (Driver driver : drivers) {
+            if (driver.getCategoryLicence() == null || driver.getCategoryLicence().isEmpty() || driver.getCategoryLicence().isBlank()) {
+                throw new LicenceException("Необходимо указать категорию прав!");
+            } else {
+                System.out.println("Категория прав указана");
+            }
+        }
+    }
 }
+
+
+

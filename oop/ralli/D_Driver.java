@@ -4,8 +4,9 @@ public class D_Driver <T extends BusRalli> extends Driver implements Participati
 
     private T bus;
 
-    public D_Driver(String name) {
-        super(name);
+    public D_Driver(String name, String categoryLicence, T bus) {
+        super(name, categoryLicence);
+        this.bus = bus;
     }
 
     public T getBus() {

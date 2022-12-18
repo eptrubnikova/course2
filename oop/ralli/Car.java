@@ -113,6 +113,9 @@ public class Car extends TransportRalli implements Competing {
         }
     }
 
+    public void getDiagnosed() {
+        System.out.printf("У автомобиля %s %s диагностика проведена \n", getBrand(), getModel());
+    }
     @Override
     public void getBestLapTime() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());

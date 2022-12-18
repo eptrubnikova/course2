@@ -12,8 +12,9 @@ public class C_Driver <B extends Truck> extends Driver implements Participating 
         this.truck = truck;
     }
 
-    public C_Driver(String name) {
-        super(name);
+    public C_Driver(String name, String categoryLicence, B truck) {
+        super(name, categoryLicence);
+        this.truck = truck;
     }
 
     @Override
