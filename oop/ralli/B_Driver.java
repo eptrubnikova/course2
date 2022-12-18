@@ -12,8 +12,9 @@ public class B_Driver<A extends Car> extends Driver implements Participating {
         this.car = car;
     }
 
-    public B_Driver(String name) {
-        super(name);
+    public B_Driver(String name, String categoryLicence, A car) {
+        super(name, categoryLicence);
+        this.car = car;
     }
 
     @Override

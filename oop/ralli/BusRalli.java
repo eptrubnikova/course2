@@ -108,6 +108,10 @@ public class BusRalli extends TransportRalli implements Competing {
         }
     }
 
+    public void getDiagnosed() throws DiagnosticsException{
+        throw new DiagnosticsException("Автобусы не проходят диагностику", this);
+
+    }
     @Override
     public void getBestLapTime() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());

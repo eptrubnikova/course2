@@ -5,9 +5,11 @@ public abstract class Driver {
     private String name;
     private boolean driverLicence;
     private int experience;
+    private String categoryLicence;
 
-    public Driver(String name) {
+    public Driver(String name, String categoryLicence) {
         this.name = Validate.validateValue(name);
+        this.categoryLicence = categoryLicence;
     }
 
     public String getName() {
@@ -16,6 +18,14 @@ public abstract class Driver {
 
     public void setName(String name) {
         this.name = Validate.validateValue(name);
+    }
+
+    public String getCategoryLicence() {
+        return categoryLicence;
+    }
+
+    public void setCategoryLicence(String categoryLicence) {
+        this.categoryLicence = categoryLicence;
     }
 
     public boolean isDriverLicence() {
