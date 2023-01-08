@@ -1,5 +1,9 @@
 package ralli;
 
+import java.util.Arrays;
+import java.util.List;
+
+
 public class Car extends TransportRalli implements Competing {
 
     public enum BodyType {
@@ -37,11 +41,15 @@ public class Car extends TransportRalli implements Competing {
     private int speed;
     private double besTime;
     private BodyType bodyType;
+    private B_Driver driver;
+    private List<Car> cars;
+    private final List<Mechanic<Car>> mechanics;
 
-    public Car(String brand, String model, double engineVolume) {
+    public Car(String brand, String model, double engineVolume, B_Driver driver, Mechanic<Car>... mechanics) {
         super(brand, model, engineVolume);
+        this.driver = driver;
+        this.mechanics = Arrays.asList(mechanics);
     }
-
 
     public double getBesTime() {
         return besTime;
@@ -59,12 +67,28 @@ public class Car extends TransportRalli implements Competing {
         this.speed = Validate.validateSpeed(speed);
     }
 
+    public List<Mechanic<Car>> getMechanics() {
+        return mechanics;
+    }
+
+    public B_Driver getDriver() {
+        return driver;
+    }
+
     public BodyType getBodyType() {
         return bodyType;
     }
 
     public void setBodyType(BodyType bodyType) {
         this.bodyType = bodyType;
+    }
+
+    public void setDriver(B_Driver driver) {
+        this.driver = driver;
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
     @Override
@@ -118,6 +142,21 @@ public class Car extends TransportRalli implements Competing {
     }
 
     @Override
+    public boolean service() {
+        return false;
+    }
+
+    @Override
+    public void repair() {
+            System.out.printf("Автомобиль %s %s исправен \n", getBrand(), getModel());
+        }
+
+    @Override
+    public List<?> mechanics() {
+        return getMechanics();
+    }
+
+    @Override
     public void getBestLapTime() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
     }
@@ -127,4 +166,8 @@ public class Car extends TransportRalli implements Competing {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
     }
 
+    public String toString() {
+
+        return "Автомобиль с водителем " + driver + "\n" + super.toString();
+    }
 }

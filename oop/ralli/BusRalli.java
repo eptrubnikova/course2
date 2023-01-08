@@ -1,5 +1,8 @@
 package ralli;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BusRalli extends TransportRalli implements Competing {
 
     public enum NumberSeats {
@@ -21,7 +24,8 @@ public class BusRalli extends TransportRalli implements Competing {
         public String toString() {
             if (numberSeatsFrom == null) {
                 System.out.println("Вместимость автобуса до " + numberSeatsBefore + " мест");
-            } else System.out.println("Вместимость автобуса от " + numberSeatsFrom + " до " + numberSeatsBefore + " мест");
+            } else
+                System.out.println("Вместимость автобуса от " + numberSeatsFrom + " до " + numberSeatsBefore + " мест");
 
             return name();
         }
@@ -35,6 +39,13 @@ public class BusRalli extends TransportRalli implements Competing {
     private int speed;
     private double besTime;
     private NumberSeats numberSeats;
+    private D_Driver driver;
+    private final List<Mechanic<BusRalli>> mechanics;
+
+    public BusRalli(String brand, String model, double engineVolume, D_Driver driver, Mechanic<BusRalli>... mechanics) {
+        super(brand, model, engineVolume);
+        this.mechanics = Arrays.asList(mechanics);
+    }
 
     public int getSpeed() {
         return speed;
@@ -42,6 +53,10 @@ public class BusRalli extends TransportRalli implements Competing {
 
     public void setSpeed(int speed) {
         this.speed = Validate.validateSpeed(speed);
+    }
+
+    public List<Mechanic<BusRalli>> getMechanics() {
+        return mechanics;
     }
 
     public double getBesTime() {
@@ -60,8 +75,8 @@ public class BusRalli extends TransportRalli implements Competing {
         this.numberSeats = numberSeats;
     }
 
-    public BusRalli(String brand, String model, double engineVolume) {
-        super(brand, model, engineVolume);
+    public D_Driver getDriver() {
+        return driver;
     }
 
     @Override
@@ -108,10 +123,26 @@ public class BusRalli extends TransportRalli implements Competing {
         }
     }
 
-    public void getDiagnosed() throws DiagnosticsException{
+    public void getDiagnosed() throws DiagnosticsException {
         throw new DiagnosticsException("Автобусы не проходят диагностику", this);
 
     }
+
+    @Override
+    public boolean service() {
+        return false;
+    }
+
+    @Override
+    public void repair() {
+        System.out.printf("Автобус %s %s исправен \n", getBrand(), getModel());
+    }
+
+    @Override
+    public List<?> mechanics() {
+        return getMechanics();
+    }
+
     @Override
     public void getBestLapTime() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " лучшее время круга " + getBesTime());
@@ -120,5 +151,9 @@ public class BusRalli extends TransportRalli implements Competing {
     @Override
     public void getMaxSpeed() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
+    }
+
+    public String toString() {
+        return "Автобус с водителем " + driver +"\n" + super.toString();
     }
 }

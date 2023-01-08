@@ -12,9 +12,8 @@ public class C_Driver <B extends Truck> extends Driver implements Participating 
         this.truck = truck;
     }
 
-    public C_Driver(String name, String categoryLicence, B truck) {
+    public C_Driver(String name, String categoryLicence) {
         super(name, categoryLicence);
-        this.truck = truck;
     }
 
     @Override
@@ -35,9 +34,7 @@ public class C_Driver <B extends Truck> extends Driver implements Participating 
 
     }
 
-    public String toString(B truck) {
-        System.out.println("Водитель " + getName() + " допущен к управлению " + truck.getBrand() +
-                " " + truck.getModel() + " и будет участвовать в заезде");
-        return null;
+    public String toString() {
+        return "Водитель " + getName();
     }
 }

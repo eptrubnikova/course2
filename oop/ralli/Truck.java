@@ -1,5 +1,8 @@
 package ralli;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Truck extends TransportRalli implements Competing {
 
     public enum LoadCapacity {
@@ -56,8 +59,14 @@ public class Truck extends TransportRalli implements Competing {
     private double besTime;
     private LoadCapacity loadCapacity;
 
-    public Truck(String brand, String model, double engineVolume) {
+    private C_Driver driver;
+    private final List<Mechanic<Truck>> mechanics;
+
+
+    public Truck(String brand, String model, double engineVolume, C_Driver driver, Mechanic<Truck>... mechanics) {
         super(brand, model, engineVolume);
+        setDriver(driver);
+        this.mechanics = Arrays.asList(mechanics);
     }
 
     public int getSpeed() {
@@ -66,6 +75,14 @@ public class Truck extends TransportRalli implements Competing {
 
     public void setSpeed(int speed) {
         this.speed = Validate.validateSpeed(speed);
+    }
+
+    public List<Mechanic<Truck>> getMechanics() {
+        return mechanics;
+    }
+
+    public void setDriver(C_Driver driver) {
+        this.driver = driver;
     }
 
     public double getBesTime() {
@@ -130,7 +147,24 @@ public class Truck extends TransportRalli implements Competing {
     }
 
     public void getDiagnosed() {
-        System.out.printf("У автомобиля %s %s диагностика проведена \n", getBrand(), getModel());    }
+        System.out.printf("У автомобиля %s %s диагностика проведена \n", getBrand(), getModel());
+    }
+
+    @Override
+    public boolean service() {
+        return false;
+    }
+
+    @Override
+    public void repair() {
+
+        System.out.printf("Грузовой автомобиль %s %s исправен \n", getBrand(), getModel());
+    }
+
+    @Override
+    public List<?> mechanics() {
+        return getMechanics();
+    }
 
     @Override
     public void getBestLapTime() {
@@ -140,5 +174,11 @@ public class Truck extends TransportRalli implements Competing {
     @Override
     public void getMaxSpeed() {
         System.out.println("У транспортного средства " + getBrand() + getBrand() + " макстимальная скорость " + getSpeed());
+    }
+
+    @Override
+    public String toString() {
+
+        return "Грузовой автомобиль с водителем " + driver + super.toString();
     }
 }
