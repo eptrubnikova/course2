@@ -1,7 +1,6 @@
 package ralli;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class Truck extends TransportRalli implements Competing {
 
@@ -60,13 +59,11 @@ public class Truck extends TransportRalli implements Competing {
     private LoadCapacity loadCapacity;
 
     private C_Driver driver;
-    private final List<Mechanic<Truck>> mechanics;
 
 
-    public Truck(String brand, String model, double engineVolume, C_Driver driver, Mechanic<Truck>... mechanics) {
+    public Truck(String brand, String model, double engineVolume, C_Driver driver) {
         super(brand, model, engineVolume);
         setDriver(driver);
-        this.mechanics = Arrays.asList(mechanics);
     }
 
     public int getSpeed() {
@@ -75,10 +72,6 @@ public class Truck extends TransportRalli implements Competing {
 
     public void setSpeed(int speed) {
         this.speed = Validate.validateSpeed(speed);
-    }
-
-    public List<Mechanic<Truck>> getMechanics() {
-        return mechanics;
     }
 
     public void setDriver(C_Driver driver) {
@@ -161,9 +154,9 @@ public class Truck extends TransportRalli implements Competing {
         System.out.printf("Грузовой автомобиль %s %s исправен \n", getBrand(), getModel());
     }
 
-    @Override
-    public List<?> mechanics() {
-        return getMechanics();
+
+    public Set<?> mechanics() {
+        return null;
     }
 
     @Override

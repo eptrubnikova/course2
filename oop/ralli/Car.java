@@ -1,7 +1,9 @@
 package ralli;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 
 public class Car extends TransportRalli implements Competing {
@@ -41,14 +43,30 @@ public class Car extends TransportRalli implements Competing {
     private int speed;
     private double besTime;
     private BodyType bodyType;
-    private B_Driver driver;
-    private List<Car> cars;
-    private final List<Mechanic<Car>> mechanics;
+    private B_Driver<Car> driver;
+    private Set<Car> cars;
 
-    public Car(String brand, String model, double engineVolume, B_Driver driver, Mechanic<Car>... mechanics) {
+    private static Map<Car, Set<Mechanic<Car>>> servicedCar = new HashMap<>();
+
+    public static String getServicedCar() {
+        StringBuilder builder = new StringBuilder();
+        for (Map.Entry<Car, Set<Mechanic<Car>>> entry : servicedCar.entrySet()) {
+            builder.append(entry.getKey().getBrand()).append("-->");
+            for (Mechanic<Car> mechanic : entry.getValue()) {
+                builder.append(mechanic.getName()).append(",");
+            }
+        }
+        return builder.toString();
+    }
+
+
+//    public static Map<Car, Set<Mechanic<Car>>> getServicedCar() {
+//        return servicedCar;
+//    }
+
+    public Car(String brand, String model, double engineVolume, B_Driver<Car> driver) {
         super(brand, model, engineVolume);
         this.driver = driver;
-        this.mechanics = Arrays.asList(mechanics);
     }
 
     public double getBesTime() {
@@ -67,11 +85,7 @@ public class Car extends TransportRalli implements Competing {
         this.speed = Validate.validateSpeed(speed);
     }
 
-    public List<Mechanic<Car>> getMechanics() {
-        return mechanics;
-    }
-
-    public B_Driver getDriver() {
+    public B_Driver<Car> getDriver() {
         return driver;
     }
 
@@ -83,14 +97,19 @@ public class Car extends TransportRalli implements Competing {
         this.bodyType = bodyType;
     }
 
-    public void setDriver(B_Driver driver) {
+    public void setDriver(B_Driver<Car> driver) {
         this.driver = driver;
     }
 
-    public List<Car> getCars() {
+    public Set<Car> getCars() {
         return cars;
     }
 
+    public void addMechanic(Mechanic<Car> mechanic) {
+        Set<Mechanic<Car>> mechanics = servicedCar.getOrDefault(this, new HashSet<>());
+        mechanics.add(mechanic);
+        servicedCar.put(this, mechanics);
+    }
     @Override
     public void startMoving() {
         System.out.println("старт");
@@ -110,7 +129,6 @@ public class Car extends TransportRalli implements Competing {
             System.out.printf("У автомобиля %s %s %s \n", getBrand(), getModel(), getBodyType());
         }
     }
-
 
     @Override
     public void pitStop(String action) {
@@ -148,12 +166,12 @@ public class Car extends TransportRalli implements Competing {
 
     @Override
     public void repair() {
-            System.out.printf("Автомобиль %s %s исправен \n", getBrand(), getModel());
-        }
+        System.out.printf("Автомобиль %s %s исправен \n", getBrand(), getModel());
+    }
 
-    @Override
-    public List<?> mechanics() {
-        return getMechanics();
+
+    public Set<?> mechanics() {
+        return null;
     }
 
     @Override
@@ -170,4 +188,6 @@ public class Car extends TransportRalli implements Competing {
 
         return "Автомобиль с водителем " + driver + "\n" + super.toString();
     }
+
+
 }

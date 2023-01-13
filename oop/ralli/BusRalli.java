@@ -1,7 +1,6 @@
 package ralli;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class BusRalli extends TransportRalli implements Competing {
 
@@ -40,11 +39,11 @@ public class BusRalli extends TransportRalli implements Competing {
     private double besTime;
     private NumberSeats numberSeats;
     private D_Driver driver;
-    private final List<Mechanic<BusRalli>> mechanics;
 
-    public BusRalli(String brand, String model, double engineVolume, D_Driver driver, Mechanic<BusRalli>... mechanics) {
+    private Set<BusRalli> buses;
+
+    public BusRalli(String brand, String model, double engineVolume, D_Driver driver) {
         super(brand, model, engineVolume);
-        this.mechanics = Arrays.asList(mechanics);
     }
 
     public int getSpeed() {
@@ -55,8 +54,8 @@ public class BusRalli extends TransportRalli implements Competing {
         this.speed = Validate.validateSpeed(speed);
     }
 
-    public List<Mechanic<BusRalli>> getMechanics() {
-        return mechanics;
+    public Set<BusRalli> getBuses() {
+        return buses;
     }
 
     public double getBesTime() {
@@ -138,9 +137,9 @@ public class BusRalli extends TransportRalli implements Competing {
         System.out.printf("Автобус %s %s исправен \n", getBrand(), getModel());
     }
 
-    @Override
-    public List<?> mechanics() {
-        return getMechanics();
+
+    public Set<?> mechanics() {
+        return null;
     }
 
     @Override
@@ -154,6 +153,6 @@ public class BusRalli extends TransportRalli implements Competing {
     }
 
     public String toString() {
-        return "Автобус с водителем " + driver +"\n" + super.toString();
+        return "Автобус с водителем " + driver + "\n" + super.toString();
     }
 }
