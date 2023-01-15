@@ -4,9 +4,8 @@ public class D_Driver <T extends BusRalli> extends Driver implements Participati
 
     private T bus;
 
-    public D_Driver(String name, String categoryLicence, T bus) {
+    public D_Driver(String name, String categoryLicence) {
         super(name, categoryLicence);
-        this.bus = bus;
     }
 
     public T getBus() {
@@ -32,9 +31,7 @@ public class D_Driver <T extends BusRalli> extends Driver implements Participati
         System.out.printf("%s заправляет авто", getName());
     }
 
-    public String toString(T bus) {
-        System.out.println("Водитель " + getName() + " допущен к управлению " + bus.getBrand() +
-                " " + bus.getModel() + " и будет участвовать в заезде");
-        return null;
+    public String toString() {
+       return "Водитель " + getName();
     }
 }
