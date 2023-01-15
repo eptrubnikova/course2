@@ -1,6 +1,7 @@
 package ralli;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class TestRalli {
@@ -68,15 +69,25 @@ public class TestRalli {
 //        car2.getMaxSpeed();
 
         C_Driver<Truck> max = new C_Driver<>("Max", "C");
+        C_Driver<Truck> lik = new C_Driver<>("Lik", "C");
         C_Driver<Truck> vik = new C_Driver<>("Viktor", "C");
+        C_Driver<Truck> pik = new C_Driver<>("Pik", "C");
+        C_Driver<Truck> tik = new C_Driver<>("Tik", "C");
 
         Set<C_Driver<Truck>> set = new HashSet<>();
         set.add(max);
-        set.add(max);
+        set.add(lik);
         set.add(vik);
         set.add(max);
+        set.add(pik);
+        set.add(tik);
 
 //        System.out.println(Arrays.toString(set.toArray()));
+
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
 
         Truck truck1 = new Truck("КамАЗ", "49252", 17.2, vik);
         Truck truck2 = new Truck("КамАЗ", "5555", 17.9, max);
